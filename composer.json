@@ -1,0 +1,34 @@
+{
+	"name": "clevyr/nova-blog",
+	"description": "A Laravel Nova tool.",
+	"keywords": [
+		"laravel",
+		"nova"
+	],
+	"license": "MIT",
+	"require": {
+		"php": ">=7.1.0",
+		"spatie/laravel-tags": "^4.3",
+		"spatie/nova-tags-field": "^3.4"
+	},
+	"autoload": {
+		"psr-4": {
+			"Clevyr\\NovaBlog\\": "src/"
+		}
+	},
+	"extra": {
+		"laravel": {
+			"providers": [
+				"Clevyr\\NovaBlog\\ToolServiceProvider"
+			],
+			"aliases": {
+				"NovaPageBuilder": "Clevyr\\NovaBlog\\Facades\\NovaBlog"
+			}
+		}
+	},
+	"config": {
+		"sort-packages": true
+	},
+	"minimum-stability": "dev",
+	"prefer-stable": true
+}
