@@ -69,12 +69,14 @@ class BlogPost extends Resource
                 ->exceptOnForms(),
             Text::make('Title', 'title'),
             Textarea::make('Post Snippet', 'post_introduction'),
-            Text::make('Author', 'author'),
+            Text::make('Author', 'author')->hideFromIndex(),
             Select::make('Locale')
                 ->options(config('nova-page-builder.locales')),
             Boolean::make('Published?', 'is_published')
                 ->default(false),
-            DateTime::make('Published at', 'published_at')->rules('required'),
+            DateTime::make('Published at', 'published_at')
+                ->rules('required')
+                ->hideFromIndex(),
             Slug::make('Slug')
                 ->from('Title')
                 ->rules('required')
@@ -98,10 +100,12 @@ class BlogPost extends Resource
             Tags::make('Categories')
                 ->withMeta(['placeholder' => 'Add categories...'])
                 ->hideWhenCreating()
+                ->hideFromIndex()
                 ->type('post_categories'),
             Tags::make('Tags')
                 ->withMeta(['placeholder' => 'Add tags...'])
                 ->hideWhenCreating()
+                ->hideFromIndex()
                 ->type('post_tags'),
         ]);
 
