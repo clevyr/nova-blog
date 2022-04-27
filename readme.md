@@ -3,10 +3,10 @@
 #### Features
 1. Title
 2. Author
-3. Snippets
+3. Snippet
 4. Locales
 5. Customizable slug
-6. Published at date 
+6. Customizable Published At date 
 7. Published or Draft status
 8. RTE content (TinyMCE)
 9. Featured Image
