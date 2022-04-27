@@ -76,7 +76,8 @@ class BlogPost extends Resource
                 ->default(false),
             DateTime::make('Published at', 'published_at')
                 ->rules('required')
-                ->hideFromIndex(),
+                ->sortable()
+                ->format('MMMM Do, YYYY'),
             Slug::make('Slug')
                 ->from('Title')
                 ->rules('required')
@@ -93,7 +94,6 @@ class BlogPost extends Resource
                 ->hideFromIndex()
                 ->hideWhenCreating(),
             Image::make('Featured Image', 'featured_image')
-                ->hideFromIndex()
                 ->hideWhenCreating()
                 ->disk(config('filesystems.default'))
                 ->nullable(),
