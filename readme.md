@@ -33,7 +33,7 @@ nova-blog.php
 |------------------|------------------------------------------------------------------------------------|-------------------------|
 | blog_posts_table | The database table name where posts should be stored                               | String                  |
 | post_model       | The Eloquent model for the posts                                                   | Eloquent Model Class    |
-| nova_resource    | The Nova Resource file for the posts                                               | Eloquent Model Class    |
+| nova_resource    | The Nova Resource file for the posts                                               | Nova Resource Class     |
 | base_uri         | The base URI for blogs. ex: website.com`/blog`                                     | String with leading `/` |
 | post_uri         | The base URI for blogs posts. ex: website.com/blog`/post`/post-slug                | String with leading `/` |
 | locales          | An array of locales with a key => value of 'locale_slug' => 'locale display string' | Array                   |
