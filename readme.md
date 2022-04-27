@@ -3,14 +3,16 @@
 #### Features
 1. Title
 2. Author
-3. Customizable slug
-4. Published at date 
-5. Published or Draft status
-6. RTE content (TinyMCE)
-7. Featured Image
-8. Categories
-9. Tags (separate from Categories)
-10. Custom SEO information
+3. Snippets
+4. Locales
+5. Customizable slug
+6. Published at date 
+7. Published or Draft status
+8. RTE content (TinyMCE)
+9. Featured Image
+10. Categories
+11. Tags (separate from Categories)
+12. Custom SEO information (title, description and image)
 
 
 #### Requirements
@@ -54,3 +56,11 @@ Route: `$base_uri/$post_uri/{post_slug}`
 Example: `/blog/post/my-blog-post`  
 Returns: Eloquent object of Post model
 
+## Setting Default Images
+To set default images for posts, featured images or seo images, you can create a new migration to change the default 
+value.
+```
+Schema::table(config('nova-blog.blog_posts_table'), function (Blueprint $table) {
+    $table->string('featured_image')->default('/path-to-image')->change();
+});
+```
