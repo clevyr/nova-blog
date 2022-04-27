@@ -36,7 +36,7 @@ class ToolServiceProvider extends ServiceProvider
                 __DIR__ . '/../config/config.php' => config_path('nova-blog.php')
             ], 'clevyr-nova-blog');
             $this->publishes([
-                __DIR__ . '/../config/nova-tinymce.php' => config_path('tags.php')
+                __DIR__ . '/../config/tags.php' => config_path('tags.php')
             ], 'clevyr-nova-blog');
 
             // Publishing the views.
