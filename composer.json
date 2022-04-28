@@ -22,7 +22,7 @@
 				"Clevyr\\NovaBlog\\ToolServiceProvider"
 			],
 			"aliases": {
-				"NovaPageBuilder": "Clevyr\\NovaBlog\\Facades\\NovaBlog"
+				"NovaBlog": "Clevyr\\NovaBlog\\Facades\\NovaBlog"
 			}
 		}
 	},
