@@ -6,6 +6,7 @@ use Emilianotisato\NovaTinyMCE\NovaTinyMCE;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\DateTime;
+use Laravel\Nova\Fields\File;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\Select;
@@ -72,7 +73,9 @@ class BlogPost extends Resource
             Text::make('Author', 'author')->hideFromIndex(),
             Select::make('Locale')
                 ->options(config('nova-page-builder.locales')),
-            Boolean::make('Published?', 'is_published')
+            Boolean::make('Feature Post?', 'is_featured')
+                ->default(false),
+            Boolean::make('Publish Post?', 'is_published')
                 ->default(false),
             DateTime::make('Published at', 'published_at')
                 ->rules('required')
@@ -93,7 +96,7 @@ class BlogPost extends Resource
             NovaTinyMCE::make('Content', 'post_content')
                 ->hideFromIndex()
                 ->hideWhenCreating(),
-            Image::make('Featured Image', 'featured_image')
+            File::make('Featured Image or Video', 'featured_image')
                 ->hideWhenCreating()
                 ->disk(config('filesystems.default'))
                 ->nullable(),

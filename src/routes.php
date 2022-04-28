@@ -21,5 +21,5 @@ Route::get(
 Route::get(config('nova-blog.base_uri', '/blog') . '/get-published-posts', function() {
     $model = app(config('nova-blog.post_model'));
     $posts = $model->where('is_published', 1)->orderBy('title', 'asc')->get();
-    return json_encode($posts);
+    return $posts;
 });

@@ -18,6 +18,11 @@ class Post extends Model
         'published_at',
     ];
 
+    protected $appends = [
+        'post_categories',
+        'post_tags',
+    ];
+
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
@@ -30,5 +35,21 @@ class Post extends Model
             'locales' => config('nova-blog.locales'),
             'active' => $this->locale,
         ];
+    }
+
+    public function getPostCategoriesAttribute() {
+        $tags =  $this->tags->filter(function($tag) {
+            return $tag->type === 'post_categories';
+        })->values();
+
+        return $tags;
+    }
+
+    public function getPostTagsAttribute() {
+        $tags = $this->tags->filter(function($tag) {
+            return $tag->type === 'post_tags';
+        })->values();
+
+        return $tags;
     }
 }

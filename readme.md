@@ -6,13 +6,14 @@
 3. Snippet
 4. Locales
 5. Customizable slug
-6. Customizable Published At date 
-7. Published or Draft status
-8. RTE content (TinyMCE)
-9. Featured Image
-10. Categories
-11. Tags (separate from Categories)
-12. Custom SEO information (title, description and image)
+6. Featured posts
+7. Customizable published-at dates 
+8. "Published" or "draft" status
+9. RTE content (TinyMCE)
+10. Featured image for posts
+11. Categories
+12. Tags (separate from Categories)
+13. Custom SEO information (title, description and image)
 
 
 #### Requirements
