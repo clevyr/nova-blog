@@ -30,6 +30,10 @@ composer require clevyr/nova-blog
 ```
 php artisan vendor:publish --tag=clevyr-nova-blog
 ```
+### Run Migrations
+```
+php artisan migrate
+```
 
 ## Config
 #### Blog Post Settings
