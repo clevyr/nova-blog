@@ -26,6 +26,10 @@ Install the package
 ```
 composer require clevyr/nova-blog
 ```
+### Publish Files
+```
+php artisan vendor:publish --tag=clevyr-nova-blog
+```
 
 ## Config
 #### Blog Post Settings

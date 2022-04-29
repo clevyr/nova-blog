@@ -33,7 +33,7 @@ class ToolServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             // Publish configs.
             $this->publishes([
-                __DIR__ . '/../config/config.php' => config_path('nova-blog.php')
+                __DIR__ . '/../config/nova-blog.php' => config_path('nova-blog.php')
             ], 'clevyr-nova-blog');
             $this->publishes([
                 __DIR__ . '/../config/tags.php' => config_path('tags.php')
