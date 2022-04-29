@@ -24,7 +24,7 @@ Nova 3.0+
 ## Installation
 Install the package
 ```
-composer require clevyr/nova-blog-package
+composer require clevyr/nova-blog
 ```
 
 ## Config
