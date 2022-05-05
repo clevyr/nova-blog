@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /**
  * Return json data for a specific post by slug
@@ -27,7 +28,7 @@ Route::get(config('nova-blog.base_uri', '/blog') . '/get-published-posts', funct
 /**
 * Return json data for all published posts with a certain category or tag applied
 */
-Route::get(config('nova-blog.base_uri', '/blog') . '/filter', function() {
+Route::get(config('nova-blog.base_uri', '/blog') . '/filter', function(Request $request) {
     $model = app(config('nova-blog.post_model'));
 
     $postsWithCategories = $model->publishedPosts()->withAnyTags([$request->type], 'post_categories')
