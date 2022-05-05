@@ -65,7 +65,7 @@ Route: `$base_uri/$post_uri/{post_slug}`
 Example: `/blog/post/my-blog-post`  
 Returns: Eloquent object of Post model
 #### Fetch all published posts with a certain tag or category applied
-Route: `$base_uri/filter?type="{category or tag name}"`  
+Route: `$base_uri/filter?type={category or tag name}`  
 Example: `/blog/filter?type=tag1`  
 Returns: Array of Eloquent objects of Post model
 
