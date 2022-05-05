@@ -3,6 +3,7 @@
 namespace Clevyr\NovaBlog\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Post extends Model
 {
@@ -26,9 +27,14 @@ class Post extends Model
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
+
+        // Set the table from the config file
         $this->setTable(config('nova-blog.blog_posts_table', 'nova_blog_posts'));
     }
 
+    /*
+        Return available locales from the config file
+    */
     public function getLocales()
     {
         return [
@@ -37,6 +43,9 @@ class Post extends Model
         ];
     }
 
+    /*
+        Return the post's categories
+    */
     public function getPostCategoriesAttribute() {
         $tags =  $this->tags->filter(function($tag) {
             return $tag->type === 'post_categories';
@@ -45,11 +54,21 @@ class Post extends Model
         return $tags;
     }
 
+    /*
+        Return the post's tags
+    */
     public function getPostTagsAttribute() {
         $tags = $this->tags->filter(function($tag) {
             return $tag->type === 'post_tags';
         })->values();
 
         return $tags;
+    }
+
+    /*
+        Return all published posts, that were published during or before today
+    */
+    public function publishedPosts() {
+        return $this->where('is_published', 1)->whereDate('published_at', '<=', Carbon::now());
     }
 }
