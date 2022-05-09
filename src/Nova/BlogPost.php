@@ -70,9 +70,11 @@ class BlogPost extends Resource
                 ->exceptOnForms(),
             Text::make('Title', 'title'),
             Textarea::make('Post Snippet', 'post_introduction'),
-            Text::make('Author', 'author')->hideFromIndex(),
+            Text::make('Author', 'author')
+                ->hideFromIndex(),
             Select::make('Locale')
-                ->options(config('nova-page-builder.locales')),
+                ->options(config('nova-blog.locales'))
+                ->default(array_key_first(config('nova-blog.locales'))),
             Boolean::make('Feature Post?', 'is_featured')
                 ->default(false),
             Boolean::make('Publish Post?', 'is_published')
@@ -94,20 +96,16 @@ class BlogPost extends Resource
          */
         $panels[] = new Panel('Content', [
             NovaTinyMCE::make('Content', 'post_content')
-                ->hideFromIndex()
-                ->hideWhenCreating(),
+                ->hideFromIndex(),
             File::make('Featured Image or Video', 'featured_image')
-                ->hideWhenCreating()
                 ->disk(config('filesystems.default'))
                 ->nullable(),
             Tags::make('Categories')
                 ->withMeta(['placeholder' => 'Add categories...'])
-                ->hideWhenCreating()
                 ->hideFromIndex()
                 ->type('post_categories'),
             Tags::make('Tags')
                 ->withMeta(['placeholder' => 'Add tags...'])
-                ->hideWhenCreating()
                 ->hideFromIndex()
                 ->type('post_tags'),
         ]);
@@ -118,15 +116,12 @@ class BlogPost extends Resource
         $panels[] = new Panel('SEO', [
             Text::make('SEO Title', 'seo_title')
                 ->hideFromIndex()
-                ->hideWhenCreating()
                 ->nullable(),
             Text::make('SEO Description', 'seo_description')
                 ->hideFromIndex()
-                ->hideWhenCreating()
                 ->nullable(),
             Image::make('SEO Image', 'seo_image')
                 ->hideFromIndex()
-                ->hideWhenCreating()
                 ->disk(config('filesystems.default'))
                 ->nullable(),
         ]);

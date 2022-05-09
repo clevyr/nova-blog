@@ -51,5 +51,5 @@ Route::get(config('nova-blog.base_uri', '/blog') . '/filter', function(Request $
         return $found;
     });
 
-    return json_encode($posts);
+    return json_encode($posts->flatten());
 });
