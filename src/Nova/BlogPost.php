@@ -82,6 +82,7 @@ class BlogPost extends Resource
             DateTime::make('Published at', 'published_at')
                 ->rules('required')
                 ->sortable()
+                ->default(Carbon::now())
                 ->format('MMMM Do, YYYY'),
             Slug::make('Slug')
                 ->from('Title')
