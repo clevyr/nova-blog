@@ -26,18 +26,30 @@ Route::get(config('nova-blog.base_uri', '/blog') . '/get-published-posts', funct
 });
 
 /**
-* Return json data for all published posts with a certain category or tag applied
-*/
+ * Return json data for all published posts with a certain category or tag applied
+ */
 Route::get(config('nova-blog.base_uri', '/blog') . '/filter', function(Request $request) {
     $model = app(config('nova-blog.post_model'));
 
-    $postsWithCategories = $model->publishedPosts()->withAnyTags([$request->type], 'post_categories')
-        ->orderBy('published_at', 'desc')->get();
+    $posts = $model->publishedPosts()->get();
 
-    $postsWithTags = $model->publishedPosts()->withAnyTags([$request->type], 'post_tags')->orderBy('published_at',
-        'desc')->get();
+    $posts = $posts->filter(function ($post) use ($request) {
+        $found = false;
 
-    $posts = collect([$postsWithCategories, $postsWithTags])->flatten();
+        foreach($post->post_categories as $key => $cat) {
+            if (strtolower($cat->slug) === strtolower($request->type)) {
+                $found = true;
+            }
+        }
+
+        foreach($post->post_tags as $key => $tag) {
+            if (strtolower($tag->slug) === strtolower($request->type)) {
+                $found = true;
+            }
+        }
+
+        return $found;
+    });
 
     return json_encode($posts);
 });
