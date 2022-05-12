@@ -4,6 +4,7 @@ namespace Clevyr\NovaBlog\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 class Post extends Model
 {
@@ -22,6 +23,7 @@ class Post extends Model
     protected $appends = [
         'post_categories',
         'post_tags',
+        'storage_path',
     ];
 
     public function __construct(array $attributes = [])
@@ -70,5 +72,12 @@ class Post extends Model
     */
     public function publishedPosts() {
         return $this->where('is_published', 1)->whereDate('published_at', '<=', Carbon::now());
+    }
+
+    /*
+        Automatically append the default storages url for files
+    */
+    public function getStoragePathAttribute() {
+        return Storage::url('/');
     }
 }
