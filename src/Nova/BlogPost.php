@@ -15,14 +15,12 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Panel;
 use Eminiarts\Tabs\Tabs;
-use Eminiarts\Tabs\TabsOnEdit;
 use Spatie\TagsField\Tags;
 use App\Nova\Resource;
 use Carbon\Carbon;
 
 class BlogPost extends Resource
 {
-    use TabsOnEdit;
 
     /**
      * The model the resource corresponds to.
@@ -83,8 +81,7 @@ class BlogPost extends Resource
             DateTime::make('Published at', 'published_at')
                 ->rules('required')
                 ->sortable()
-                ->default(Carbon::now())
-                ->format('MMMM Do, YYYY'),
+                ->default(Carbon::now()),
             Slug::make('Slug')
                 ->from('Title')
                 ->rules('required')

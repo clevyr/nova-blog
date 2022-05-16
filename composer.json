@@ -9,7 +9,7 @@
 	"require": {
 		"php": ">=7.1.0",
 		"spatie/laravel-tags": "^4.3",
-		"spatie/nova-tags-field": "^3.4"
+		"spatie/nova-tags-field": "^4.0"
 	},
 	"autoload": {
 		"psr-4": {
