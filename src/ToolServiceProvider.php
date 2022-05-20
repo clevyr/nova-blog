@@ -3,6 +3,7 @@
 namespace Clevyr\NovaBlog;
 
 use Illuminate\Support\ServiceProvider;
+use Laravel\Nova\Events\ServingNova;
 use Laravel\Nova\Nova;
 use Clevyr\NovaBlog\NovaBlog as NovaBlogInstance;
 
@@ -18,11 +19,13 @@ class ToolServiceProvider extends ServiceProvider
         // Load migrations
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
 
-        // Load Views
-        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'nova');
-
         // Load Routes
         $this->loadRoutesFrom(__DIR__ . '/routes.php');
+
+        // Load CSS file
+        Nova::serving(function (ServingNova $event) {
+            Nova::style('blog-field', __DIR__.'/../resources/css/styles.css');
+        });
 
         // Register Page Builder resource
         Nova::resources([
