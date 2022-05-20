@@ -1,0 +1,7 @@
+.tags-input.form-control input {
+    flex: 1 1 0;
+}
+
+.tags-input-tag {
+    word-break: break-all;
+}

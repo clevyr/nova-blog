@@ -24,6 +24,11 @@ class ToolServiceProvider extends ServiceProvider
         // Load Routes
         $this->loadRoutesFrom(__DIR__ . '/routes.php');
 
+        // Load CSS file
+        Nova::serving(function() {
+            Nova::style('blog-field', __DIR__.'/../resources/css/styles.css');
+        });
+
         // Register Page Builder resource
         Nova::resources([
             config('nova-blog.nova_resource', \Clevyr\NovaBlog\Nova\BlogPost::class),
