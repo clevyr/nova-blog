@@ -5,8 +5,10 @@ namespace Clevyr\NovaBlog\Models;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
+use Spatie\Feed\FeedItem;
+use Spatie\Feed\Feedable;
 
-class Post extends Model
+class Post extends Model implements Feedable
 {
     use \Spatie\Tags\HasTags;
 
@@ -79,5 +81,41 @@ class Post extends Model
     */
     public function getStoragePathAttribute() {
         return Storage::url('/');
+    }
+
+    /*
+     * Get a post's FeedItem
+     */
+    public function toFeedItem(): FeedItem
+    {
+        $featuredImage = '';
+        $summary = $this->post_content;
+        if ($this->featured_image) {
+            $featuredImage = Storage::url($this->featured_image);
+            if (config('filesystems.default') === 'public') {
+                $featuredImage = config('app.url') . $featuredImage;
+            }
+            $summary = "<p><img src=\"$featuredImage\"></p>$summary";
+        }
+
+        return FeedItem::create()
+            ->id($this->id)
+            ->title($this->title)
+            ->summary($summary)
+            ->updated($this->updated_at)
+            ->link(config('nova-blog.base_uri', '/blog') . '/post/' . $this->slug)
+            ->image($featuredImage)
+            ->authorName($this->author)
+            ->category(...$this->post_categories->map(function ($category) {
+                return $category->name;
+            }));
+    }
+
+    /*
+     * Get items to list in the feed
+     */
+    public static function getFeedItems()
+    {
+        return self::where('is_published', 1)->whereDate('published_at', '<=', Carbon::now())->get();
     }
 }
