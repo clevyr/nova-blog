@@ -29,6 +29,7 @@ composer require clevyr/nova-blog
 ### Publish Files
 ```
 php artisan vendor:publish --tag=clevyr-nova-blog
+php artisan vendor:publish --provider="Emilianotisato\NovaTinyMCE\FieldServiceProvider"
 ```
 ### Run Migrations
 ```

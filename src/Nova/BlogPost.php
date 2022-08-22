@@ -45,8 +45,13 @@ class BlogPost extends Resource
         'id', 'title', 'post_content', 'post_introduction', 'slug'
     ];
 
-
-    function __construct($resource)
+    /**
+     * Create a new resource instance.
+     *
+     * @param  TModel|null  $resource
+     * @return void
+     */
+    function __construct($resource = null)
     {
         parent::__construct($resource);
         self::$model = config('nova-blog.post_model');
