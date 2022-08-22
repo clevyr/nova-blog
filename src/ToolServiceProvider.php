@@ -41,6 +41,10 @@ class ToolServiceProvider extends ServiceProvider
             $this->publishes([
                 __DIR__ . '/../config/tags.php' => config_path('tags.php')
             ], 'clevyr-nova-blog');
+
+            $this->publishes([
+                __DIR__ . '/../config/feed.php' => config_path('feed.php')
+            ], 'clevyr-nova-blog');
         }
     }
 
